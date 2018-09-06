@@ -1,7 +1,7 @@
-import processing.core.PApplet;
 import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.providers.MBTilesMapProvider;
 import de.fhpotsdam.unfolding.utils.MapUtils;
+import processing.core.PApplet;
 
 /**
  * This example uses a local MBTiles file. Thus, it does not need an Internet connection to load tiles.

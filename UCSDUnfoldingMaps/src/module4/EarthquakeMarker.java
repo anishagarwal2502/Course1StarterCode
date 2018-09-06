@@ -1,5 +1,7 @@
 package module4;
 
+import java.awt.Color;
+
 import de.fhpotsdam.unfolding.data.PointFeature;
 import de.fhpotsdam.unfolding.marker.SimplePointMarker;
 import processing.core.PGraphics;
@@ -37,7 +39,10 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	public static final float THRESHOLD_DEEP = 300;
 
 	// ADD constants for colors
-
+	
+	public static final int RED = new Color(255, 0, 0).getRGB();
+	public static final int BLUE = new Color(0, 0, 255).getRGB();
+	public static final int YELLOW = new Color(255, 255, 0).getRGB();
 	
 	// abstract method implemented in derived classes
 	public abstract void drawEarthquake(PGraphics pg, float x, float y);
@@ -66,9 +71,12 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 		
 		// call abstract method implemented in child class to draw marker shape
 		drawEarthquake(pg, x, y);
-		
-		// OPTIONAL TODO: draw X over marker if within past day		
-		
+
+		// draw X over marker if within past day
+
+		if ("past day".equalsIgnoreCase((String) this.getProperty("age")))
+			pg.text('X', x, y);
+
 		// reset to previous styling
 		pg.popStyle();
 		
@@ -80,7 +88,14 @@ public abstract class EarthquakeMarker extends SimplePointMarker
 	// But this is up to you, of course.
 	// You might find the getters below helpful.
 	private void colorDetermine(PGraphics pg) {
-		//TODO: Implement this method
+		// Implement this method
+
+		if (this.getDepth() >= THRESHOLD_DEEP)
+			pg.fill(RED);
+		else if (this.getDepth() >= THRESHOLD_INTERMEDIATE)
+			pg.fill(BLUE);
+		else
+			pg.fill(YELLOW);
 	}
 	
 	

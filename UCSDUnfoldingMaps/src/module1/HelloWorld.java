@@ -1,12 +1,12 @@
 package module1;
 
-import processing.core.PApplet;
 import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.geo.Location;
 import de.fhpotsdam.unfolding.providers.AbstractMapProvider;
-import de.fhpotsdam.unfolding.providers.Google;
 import de.fhpotsdam.unfolding.providers.MBTilesMapProvider;
+import de.fhpotsdam.unfolding.providers.Microsoft;
 import de.fhpotsdam.unfolding.utils.MapUtils;
+import processing.core.PApplet;
 
 /** HelloWorld
   * An application with two maps side-by-side zoomed in on different locations.
@@ -46,7 +46,7 @@ public class HelloWorld extends PApplet
 		this.background(200, 200, 200);
 		
 		// Select a map provider
-		AbstractMapProvider provider = new Google.GoogleTerrainProvider();
+		AbstractMapProvider provider = new Microsoft.AerialProvider();//new Google.GoogleTerrainProvider();
 		// Set a zoom level
 		int zoomLevel = 10;
 		
@@ -74,16 +74,28 @@ public class HelloWorld extends PApplet
 		// This line makes the map interactive
 		MapUtils.createDefaultEventDispatcher(this, map1);
 		
-		// TODO: Add code here that creates map2 
-		// Then you'll modify draw() below
+		// Create a new UnfoldingMap to be displayed in this window.
+		// The 2nd-5th arguments give the map's x, y, width and height
+		// When you create your map we want you to play around with these
+		// arguments to get your second map in the right place.
+		// The 6th argument specifies the map provider.
+		// There are several providers built-in.
+		// Note if you are working offline you must use the MBTilesMapProvider
+		map2 = new UnfoldingMap(this, 400, 50, 350, 500, provider);
 
+		// The next line zooms in and centers the map at
+		map2.zoomAndPanTo(zoomLevel, new Location(28.6f, 77.3f));
+
+		// This line makes the map interactive
+		MapUtils.createDefaultEventDispatcher(this, map2);
+		
 	}
 
 	/** Draw the Applet window.  */
 	public void draw() {
 		// So far we only draw map1...
-		// TODO: Add code so that both maps are displayed
 		map1.draw();
+		map2.draw();
 	}
 
 	
