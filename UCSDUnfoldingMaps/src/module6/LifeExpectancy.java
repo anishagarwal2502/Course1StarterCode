@@ -1,20 +1,16 @@
 package module6;
 
-import processing.core.PApplet;
-import de.fhpotsdam.unfolding.UnfoldingMap;
-import de.fhpotsdam.unfolding.utils.MapUtils;
-import parsing.ParseFeed;
-import de.fhpotsdam.unfolding.providers.*;
-import de.fhpotsdam.unfolding.providers.Google.*;
-
+import java.util.HashMap;
 import java.util.List;
+
+import de.fhpotsdam.unfolding.UnfoldingMap;
 import de.fhpotsdam.unfolding.data.Feature;
 import de.fhpotsdam.unfolding.data.GeoJSONReader;
-
-import java.util.HashMap;
-
-
 import de.fhpotsdam.unfolding.marker.Marker;
+import de.fhpotsdam.unfolding.providers.Google;
+import de.fhpotsdam.unfolding.utils.MapUtils;
+import parsing.ParseFeed;
+import processing.core.PApplet;
 
 /**
  * Visualizes life expectancy in different countries. 
@@ -25,6 +21,10 @@ import de.fhpotsdam.unfolding.marker.Marker;
  */
 public class LifeExpectancy extends PApplet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	UnfoldingMap map;
 	HashMap<String, Float> lifeExpMap;
 	List<Feature> countries;
